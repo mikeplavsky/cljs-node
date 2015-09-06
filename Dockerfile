@@ -9,3 +9,5 @@ RUN mkdir /nodejs && \
     | tar xvzf - -C /nodejs --strip-components=1
 
 ENV PATH $PATH:/nodejs/bin
+
+RUN apt-get install -y rlwrap

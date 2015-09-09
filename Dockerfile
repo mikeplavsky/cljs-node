@@ -11,3 +11,15 @@ RUN mkdir /nodejs && \
 ENV PATH $PATH:/nodejs/bin
 
 RUN apt-get install -y rlwrap
+
+RUN curl https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein > /bin/lein
+RUN chmod a+x /bin/lein
+
+ENV LEIN_ROOT=1
+RUN lein
+
+RUN lein new figwheel age
+WORKDIR /age
+
+RUN lein deps
+

@@ -23,3 +23,20 @@ WORKDIR /age
 
 RUN lein deps
 
+WORKDIR /
+RUN git clone https://github.com/mikeplavsky/figwheel-node-template.git
+
+
+WORKDIR /figwheel-node-template
+RUN lein jar
+RUN lein install
+
+RUN lein new figwheel-node age1 && \
+    cd age1 && \
+    lein deps
+
+RUN rm -rf /age && rm -rf /figwheel-node-template
+
+WORKDIR /
+
+
